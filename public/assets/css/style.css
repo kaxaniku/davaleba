@@ -1,0 +1,65 @@
+.contact-page form .form-group button {
+  padding: 11px 25px;
+  border: none;
+  border-radius: 3px;
+  background-color: #0984e3;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  background-color: greenyellow;
+}
+
+.contact-page h2 {
+  text-align: center;
+  margin-top: 50px;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600;
+  font-size: 23px;
+  margin-bottom: 30px;
+}
+
+.contact-page form {
+  width: 800px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.contact-page form .text {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contact-page form .form-group {
+  margin-bottom: 15px;
+}
+
+.contact-page form .form-group label {
+  display: block;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.contact-page form .form-group input,
+.contact-page form .form-group textarea {
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 1px solid #ecf0f1;
+  background: white;
+}
+
+.contact-page form .form-group textarea {
+  height: 200px;
+}
+
+.contact-page form .form-group.error input, .contact-page form .form-group.error textarea {
+  border: 1px solid red;
+}
+/*# sourceMappingURL=style.css.map */
