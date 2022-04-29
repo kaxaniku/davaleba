@@ -1,57 +1,58 @@
 @import '_variables';
 @import '_mixins';
+@import '_styles';
 
-a{
-    text-decoration: none;
-}
+// a{
+//     text-decoration: none;
+// }
 
-header{
-    background-color: greenyellow;
-}
+// header{
+//     background-color: greenyellow;
+// }
 
-.contact-page{
-    h2{
-        text-align: center;
-        margin-top: 50px;
-        @include font-semi-bold(23px);
-        margin-bottom: 30px;
-    }
-    form{
-        width: 800px;
-        margin: 0 auto;
-        margin-bottom: 50px;
-        .text{
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .form-group{
-            margin-bottom: 15px;
-            label{
-                display: block;
-                @include font-regular(16px);
-                margin-bottom: 5px;
-            }
-            input,
-            textarea{
-                width: 100%;
-                padding: 10px 15px;
-                border-radius: 10px;
-                border: 1px solid #ecf0f1;
-                background: white;
-            }
-            textarea{
-                height: 200px;
-            }
+// .contact-page{
+//     h2{
+//         text-align: center;
+//         margin-top: 50px;
+//         @include font-semi-bold(23px);
+//         margin-bottom: 30px;
+//     }
+//     form{
+//         width: 800px;
+//         margin: 0 auto;
+//         margin-bottom: 50px;
+//         .text{
+//             text-align: center;
+//             margin-bottom: 20px;
+//         }
+//         .form-group{
+//             margin-bottom: 15px;
+//             label{
+//                 display: block;
+//                 @include font-regular(16px);
+//                 margin-bottom: 5px;
+//             }
+//             input,
+//             textarea{
+//                 width: 100%;
+//                 padding: 10px 15px;
+//                 border-radius: 10px;
+//                 border: 1px solid #ecf0f1;
+//                 background: white;
+//             }
+//             textarea{
+//                 height: 200px;
+//             }
 
-            button{
-                @extend %button-default;
-            }
+//             button{
+//                 @extend %button-default;
+//             }
 
-            &.error{
-                input,textarea{
-                    border: 1px solid red;
-                }
-            }
-        }
-    }
-}
+//             &.error{
+//                 input,textarea{
+//                     border: 1px solid red;
+//                 }
+//             }
+//         }
+//     }
+// }
