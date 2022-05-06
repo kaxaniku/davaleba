@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
+
+use App\Http\Controllers\Controller;
 
 class AboutPageController extends Controller
 {
@@ -12,13 +14,13 @@ class AboutPageController extends Controller
             'title' => 'AboutPage',
             'short_text' => 'welcome to AboutPage'
         ];
-        return view('about.about', ['MyData' => $MyData]);
+        return view('Frontend.about.about', ['MyData' => $MyData]);
     }
     public function view($id){
         $MyData = [
             'title' => 'AboutPage(inner)',
             'short_text' => 'welcome to AboutPage number' . $id
         ];
-        return view('about.about-inner-page', ['MyData' => $MyData]);
+        return view('Frontend.about.about-inner-page', ['MyData' => $MyData]);
     }
 }

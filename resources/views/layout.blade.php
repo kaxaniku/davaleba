@@ -42,7 +42,7 @@
 
     <!-- page wrap
     ================================================== -->
-    <div id="page" class="s-pagewrap ss-home">
+    <div id="page" class="s-pagewrap {{ Route::getCurrentRoute()->getName() == 'home' ? 'ss-home' : ''  }}">
 
 
         <!-- # site header 
@@ -62,7 +62,7 @@
                     <h3 class="s-header__nav-heading">Navigate to</h3>
     
                     <ul class="s-header__nav">
-                        <li class="current-menu-item"><a href="/" title="">Home</a></li>
+                        <li class="{{ Route::getCurrentRoute()->getName() == 'home' ? 'current-menu-item' : ''  }}"><a href="/" title="">Home</a></li>
                         <li class="has-children">
                             <a href="#0" title="" class="">Categories</a>
                             <ul class="sub-menu">
@@ -83,8 +83,8 @@
                             </ul>
                         </li>
                         <li><a href="styles.html" title="">Styles</a></li>
-                        <li><a href="/about" title="">About</a></li>
-                        <li><a href="/contact" title="">Contact</a></li>
+                        <li class='{{ Route::getCurrentRoute()->getName() == 'about' ? 'current-menu-item' : ''  }}'><a href="/about" title="">About</a></li>
+                        <li class="{{ Route::getCurrentRoute()->getName() == 'contact' ? 'current-menu-item' : ''  }}"><a href="/contact" title="">Contact</a></li>
                     </ul> <!-- end s-header__nav -->
 
                 </nav> <!-- end s-header__nav-wrap -->

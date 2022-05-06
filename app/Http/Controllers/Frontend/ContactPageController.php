@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
+
+use App\Http\Controllers\Controller;
 
 class ContactPageController extends Controller
 {
@@ -12,6 +14,6 @@ class ContactPageController extends Controller
             'title' => 'ContactPage',
             'short_text' => 'welcome to ContactPage'
         ];
-        return view('contact.contact', ['MyData' => $MyData]);
+        return view('Frontend.contact.contact', ['MyData' => $MyData]);
     }
 }
