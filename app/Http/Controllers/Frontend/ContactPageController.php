@@ -6,14 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 
+use App\Models\ContactPage;
+
 class ContactPageController extends Controller
 {
     public function index()
     {
-        $MyData = [
-            'title' => 'ContactPage',
-            'short_text' => 'welcome to ContactPage'
-        ];
-        return view('Frontend.contact.contact', ['MyData' => $MyData]);
+        $ContactData = ContactPage::first();
+
+        return view('Frontend.contact.contact')->with('data', ['ContactData' => $ContactData]);
     }
 }

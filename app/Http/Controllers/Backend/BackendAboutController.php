@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\AboutPage;
 
 class BackendAboutController extends Controller
 {
@@ -12,9 +13,13 @@ class BackendAboutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    
     public function index()
     {
-        return view('Backend.about.index');
+        $AboutData = AboutPage::first();
+
+        return view('Backend.about.index')->with('data', ['AboutData' => $AboutData]);
     }
 
     /**
@@ -67,9 +72,20 @@ class BackendAboutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request)
+    {      
+        $title = $request->title;
+        $S_text = $request->S_text;
+        $text = $request->text;
+
+        AboutPage::first()->update([
+            'title' => $title,
+            'S_text' => $S_text,
+            'text' => $text
+        ]);
+
+        return redirect()->route('Backend.about');
+    
     }
 
     /**

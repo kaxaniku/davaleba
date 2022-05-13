@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ContactPage;
 
 class BackendContactController extends Controller
 {
@@ -12,9 +13,13 @@ class BackendContactController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
-        return view('Backend.contact.index');
+        $ContactData = ContactPage::first();
+
+        return view('Backend.contact.index')->with('data', ['ContactData' => $ContactData]);
     }
 
     /**
@@ -67,9 +72,24 @@ class BackendContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $title = $request->title;
+        $S_text = $request->S_text;
+        $text = $request->text;
+        $C_address = $request->C_address;
+        $C_info = $request->C_info;
+
+        ContactPage::first()->update([
+            'title' => $title,
+            'S_text' => $S_text,
+            'text' => $text,
+            'C_address' => $C_address,
+            'C_info' => $C_info
+
+        ]);
+
+        return redirect()->route('Backend.contact');
     }
 
     /**

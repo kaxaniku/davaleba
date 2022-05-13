@@ -34,10 +34,14 @@ Route::get('/about/{id}', [AboutPageController::class, 'view'])->name('about-inn
 Route::get('/contact', [ContactPageController::class, 'index'])->name('contact');
 Auth::routes();
 
+Route::get('/Backend', [HomeController::class, 'index'])->name('Backend.home')->middleware('auth');
+
 Route::prefix('Backend')->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('Backend.home');
+    Route::get('/home', [HomeController::class, 'index'])->name('Backend.home')->middleware('auth');
 
-    Route::get('/about', [BackendAboutController::class, 'index'])->name('Backend.about');
+    Route::get('/about', [BackendAboutController::class, 'index'])->name('Backend.about')->middleware('auth');
+    Route::post('/about', [BackendAboutController::class, 'update'])->name('Backend.about.update')->middleware('auth');
 
-    Route::get('/contact', [BackendContactController::class, 'index'])->name('Backend.contact');
+    Route::get('/contact', [BackendContactController::class, 'index'])->name('Backend.contact')->middleware('auth');
+    Route::post('/contact', [BackendContactController::class, 'update'])->name('Backend.contact.update')->middleware('auth');
 });

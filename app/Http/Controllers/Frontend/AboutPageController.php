@@ -6,15 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 
+use App\Models\AboutPage;
+
 class AboutPageController extends Controller
 {
     public function index()
     {
-        $MyData = [
-            'title' => 'AboutPage',
-            'short_text' => 'welcome to AboutPage'
-        ];
-        return view('Frontend.about.about', ['MyData' => $MyData]);
+        $AboutData = AboutPage::first();
+
+        return view('Frontend.about.about')->with('data', ['AboutData' => $AboutData]);
     }
     public function view($id){
         $MyData = [

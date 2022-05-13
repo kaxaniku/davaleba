@@ -18,7 +18,7 @@
                         <header class="entry__header entry__header--narrow">
 
                             <h1 class="entry__title">
-                                Say Hello.
+                                {{ $data['ContactData']->title }}
                             </h1>
 
                         </header>
@@ -37,34 +37,25 @@
                             <div class="entry__content">
     
                                 <p class="lead">
-                                Duis ex ad cupidatat tempor Excepteur cillum cupidatat fugiat nostrud cupidatat dolor 
-                                sunt sint sit nisi est eu exercitation incididunt adipisicing veniam velit id fugiat 
-                                enim mollit amet anim veniam dolor dolor irure velit commodo cillum sit nulla ullamco 
-                                magna amet magna cupidatat qui labore cillum cillum cupidatat fugiat nostrud.</p> 
+                                    {{ $data['ContactData']->S_text }}
+                                </p> 
 
                                 <p>
-                                Eligendi quam at quis. Sit vel neque quam consequuntur expedita quisquam. Incidunt quae 
-                                qui error. Rerum non facere mollitia ut magnam laboriosam. Quisquam neque quia ex eligendi 
-                                repellat illum quibusdam aut. Architecto quam consequuntur totam ratione reprehenderit est 
-                                praesentium. 
+                                    {{ $data['ContactData']->text }}
                                 </p>
 
                                 <div class="row block-large-1-2 block-tab-whole entry__blocks">
                                     <div class="column">
                                         <h4>Where to Find Us</h4>
                                         <p>
-                                        1600 Amphitheatre Parkway<br>
-                                        Mountain View, CA<br>
-                                        94043 US
+                                            {{ $data['ContactData']->C_address }}
                                         </p>
                                     </div>
     
                                     <div class="column">
                                         <h4>Contact Info</h4>
                                         <p>
-                                        someone@yourdomain.com<br>
-                                        info@yourdomain.com <br>
-                                        Phone: (+63) 555 1212
+                                            {{ $data['ContactData']->C_info }}
                                         </p> 
                                     </div>
                                 </div>
