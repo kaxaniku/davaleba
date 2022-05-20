@@ -105,3 +105,7 @@
   text-align: center;
   margin-top: 1rem;
 }
+
+.alert-danger{
+   margin-top: 20px;
+}

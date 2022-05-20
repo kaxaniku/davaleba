@@ -160,6 +160,13 @@
               </a>
             </li>
 
+            <li class="menu-item {{ Route::getCurrentRoute()->getName() == 'Backend.posts' ? 'active' : ''  }}">
+              <a href="{{ route('Backend.posts') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-crown"></i>
+                <div data-i18n="Contact">Posts</div>
+              </a>
+            </li>
+
             <li class="menu-item disabled">
               <a href="" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-crown"></i>

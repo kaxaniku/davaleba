@@ -4,23 +4,27 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\AboutPage;
-use App\Http\Requests\BackendAboutRequest;
+use App\Models\PostsModel;
+use App\Http\Requests\BackendPostsRequest;
 
-class BackendAboutController extends Controller
+class BackendPostsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    
     public function index()
     {
-        $AboutData = AboutPage::first();
 
-        return view('Backend.about.index')->with('data', ['AboutData' => $AboutData]);
+        $post = PostsModel::orderBy('id', 'DESC')->get();
+
+        $data = [
+            'posts' => $post
+        ];
+
+        return view('Backend.posts.index')->with('data', $data);
+
     }
 
     /**
@@ -30,7 +34,7 @@ class BackendAboutController extends Controller
      */
     public function create()
     {
-        //
+        return view('Backend.posts.create');
     }
 
     /**
@@ -39,9 +43,19 @@ class BackendAboutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BackendPostsRequest $request)
     {
-        //
+        $title = $request->title;
+        $S_text = $request->S_text;
+        $text = $request->text;
+
+        PostsModel::create([
+            'title' => $title,
+            'S_text' => $S_text,
+            'text' => $text
+        ]);
+
+        return redirect()->route('Backend.posts');
     }
 
     /**
@@ -63,7 +77,13 @@ class BackendAboutController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = PostsModel::where('id', $id)->first();
+
+        $data = [
+            'post' => $post
+        ];
+
+        return view('Backend.posts.update')->with('data', $data);
     }
 
     /**
@@ -73,20 +93,20 @@ class BackendAboutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(BackendAboutRequest $request)
-    {      
+    public function update(BackendPostsRequest $request)
+    {
         $title = $request->title;
         $S_text = $request->S_text;
         $text = $request->text;
+        $id = $request->id;
 
-        AboutPage::first()->update([
+        PostsModel::where('id', $id)->update([
             'title' => $title,
-            'S_text' => $S_text,
-            'text' => $text
+            'text' => $text,
+            'S_text' => $S_text
         ]);
 
-        return redirect()->route('Backend.about');
-    
+        return redirect(route('Backend.posts'));
     }
 
     /**
@@ -97,6 +117,7 @@ class BackendAboutController extends Controller
      */
     public function destroy($id)
     {
-        //
+        PostsModel::destroy($id);
+        return redirect(route('Backend.posts'));
     }
 }
