@@ -25,7 +25,7 @@ class BackendAboutRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'S_text' => 'required',
+            'short_text' => 'required',
             'text' => 'required'
         ];
     }
@@ -39,7 +39,7 @@ public function messages()
 {
     return [
         'title.required' => 'გთხოვთ შეავსოთ სათაურის ველი',
-        'S_text.required' => 'გთხოვთ შეავსოთ მოკლე ტექსტის ველი',
+        'short_text.required' => 'გთხოვთ შეავსოთ მოკლე ტექსტის ველი',
         'text.required' => 'გთხოვთ შეავსოთ ტექსტის ველი'
     ];
 }

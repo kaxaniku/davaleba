@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PostsModel extends Model
+class Posts extends Model
 {
     use HasFactory;
 
@@ -16,5 +16,6 @@ class PostsModel extends Model
         'S_text',
         'text',
         'img',
+        'slug'
     ];
 }

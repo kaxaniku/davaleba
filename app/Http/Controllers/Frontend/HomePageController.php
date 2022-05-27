@@ -8,20 +8,21 @@ use Illuminate\Http\Request;
 
 use App\Models\Slide;
 
+use App\Models\Posts;
+
 class HomePageController extends Controller
 {
-    public function index()
-    {
-        // $Slide = Slide::find(1);
-        // $Slide->title = 'test_update_T';
-        // $Slide->short_text = 'test_update_S';
-        // $Slide->save();
+    public function index() {
 
-        $Slide = Slide::all();
-        
-        $MyData = [
-            'Slide' => $Slide,
+        $slides = Slide::all();
+
+        $post = Posts::orderBy('id', 'DESC')->paginate(12);
+
+        $data = [
+            'slides' => $slides,
+            'posts'  => $post
         ];
-        return view('Frontend.home', ['MyData' => $MyData]);
+
+        return view('Frontend.home', ['data' => $data]);
     }
 }

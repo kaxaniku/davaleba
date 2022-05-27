@@ -8,13 +8,15 @@ use App\Http\Controllers\Frontend\HomePageController;
 
 use App\Http\Controllers\Frontend\ContactPageController;
 
+use App\Http\Controllers\Frontend\PostController;
+
 use App\Http\Controllers\Backend\HomeController;
 
-use App\Http\Controllers\Backend\BackendPostsController;
+use App\Http\Controllers\Backend\PostsController;
 
-use App\Http\Controllers\Backend\BackendAboutController;
+use App\Http\Controllers\Backend\AboutController;
 
-use App\Http\Controllers\Backend\BackendContactController;
+use App\Http\Controllers\Backend\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +33,7 @@ Route::get('/', [HomePageController::class, 'index'])->name('home');
 
 Route::get('/about', [AboutPageController::class, 'index'])->name('about');
 
-Route::get('/about/{id}', [AboutPageController::class, 'view'])->name('about-inner');
+Route::get('/post/{slug}/{id}', [PostController::class, 'view'])->name('post.view');
 
 Route::get('/contact', [ContactPageController::class, 'index'])->name('contact');
 Auth::routes();
@@ -42,17 +44,17 @@ Route::prefix('Backend')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/home', [HomeController::class, 'index'])->name('Backend.home');
 
-        Route::get('/about', [BackendAboutController::class, 'index'])->name('Backend.about');
-        Route::post('/about', [BackendAboutController::class, 'update'])->name('Backend.about.update');
+        Route::get('/about', [AboutController::class, 'index'])->name('Backend.about');
+        Route::post('/about', [AboutController::class, 'update'])->name('Backend.about.update');
 
-        Route::get('/contact', [BackendContactController::class, 'index'])->name('Backend.contact');
-        Route::post('/contact', [BackendContactController::class, 'update'])->name('Backend.contact.update');
+        Route::get('/contact', [ContactController::class, 'index'])->name('Backend.contact');
+        Route::post('/contact', [ContactController::class, 'update'])->name('Backend.contact.update');
 
-        Route::get('/posts', [BackendPostsController::class, 'index'])->name('Backend.posts');
-        Route::get('/post/create', [BackendPostsController::class, 'create'])->name('Backend.posts.create');
-        Route::post('/post/insert', [BackendPostsController::class, 'store'])->name('Backend.posts.store');
-        Route::get('/post/edit/{id}', [BackendPostsController::class, 'edit'])->name('Backend.posts.edit');
-        Route::post('/post/update', [BackendPostsController::class, 'update'])->name('Backend.posts.update');
-        Route::get('/post/delete/{id}', [BackendPostsController::class, 'destroy'])->name('Backend.posts.destroy');
+        Route::get('/posts', [PostsController::class, 'index'])->name('Backend.posts');
+        Route::get('/post/create', [PostsController::class, 'create'])->name('Backend.posts.create');
+        Route::post('/post/insert', [PostsController::class, 'store'])->name('Backend.posts.store');
+        Route::get('/post/edit/{id}', [PostsController::class, 'edit'])->name('Backend.posts.edit');
+        Route::post('/post/update', [PostsController::class, 'update'])->name('Backend.posts.update');
+        Route::get('/post/delete/{id}', [PostsController::class, 'destroy'])->name('Backend.posts.destroy');
     });
 });

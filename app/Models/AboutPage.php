@@ -15,7 +15,7 @@ class AboutPage extends Model
 
     protected $fillable = [
         'title',
-        'S_text',
+        'short_text',
         'text',
     ];
 }

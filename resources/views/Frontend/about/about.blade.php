@@ -32,7 +32,7 @@
                             <div class="entry__content">
     
                                 <p class="lead">
-                                    {{ $data['AboutData']->S_text}}</p> 
+                                    {{ $data['AboutData']->short_text}}</p> 
 
                                 <div class="row block-lg-one-half block-tab-whole">
                                         <p class="drop-cap">

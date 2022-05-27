@@ -20,6 +20,7 @@
                                 <th>Title</th>
                                 <th>Created At</th>
                                 <th>Updated At</th>
+                                <th>Image</th>
                                 <th>Actions</th>
                                 </tr>
                             </thead>
@@ -30,6 +31,9 @@
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>{{ $item->updated_at }}</td>
+                                        <td>
+                                            <img style="width: 150px" src="{{ asset('storage/images/' .$item->img)}}" alt="">
+                                        </td>
                                         <td>
                                             <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -49,6 +53,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="p-5">
+                            {{ $data['posts']->links('pagination::bootstrap-5') }}
+                        </div>
                     </div>
                   </div>
             </div>

@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\PostsModel;
+use App\models\Posts;
 use App\Http\Requests\BackendPostsRequest;
+use Illuminate\Support\Str;
 
-class BackendPostsController extends Controller
+class PostsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +18,7 @@ class BackendPostsController extends Controller
     public function index()
     {
 
-        $post = PostsModel::orderBy('id', 'DESC')->get();
+        $post = Posts::orderBy('id', 'DESC')->paginate(5);
 
         $data = [
             'posts' => $post
@@ -48,12 +49,29 @@ class BackendPostsController extends Controller
         $title = $request->title;
         $S_text = $request->S_text;
         $text = $request->text;
+        $slug = Str::slug($title);
 
-        PostsModel::create([
+        $data = [
             'title' => $title,
             'S_text' => $S_text,
-            'text' => $text
-        ]);
+            'text' => $text,
+            'slug' => $slug
+        ];
+
+        if ($request->has('img') && $request->file('img') != null) {
+            $img = $request->file('img');
+
+            $Folder = 'public/images/';
+
+            $imgName = str_replace('' , '_' , $title) . '_' . time() . '.' . $img->getClientOriginalExtension();
+
+            $img->storeAs($Folder, $imgName);
+
+            $data['img'] = $imgName;
+        }
+
+
+        Posts::create($data);
 
         return redirect()->route('Backend.posts');
     }
@@ -77,7 +95,7 @@ class BackendPostsController extends Controller
      */
     public function edit($id)
     {
-        $post = PostsModel::where('id', $id)->first();
+        $post = Posts::where('id', $id)->first();
 
         $data = [
             'post' => $post
@@ -99,12 +117,28 @@ class BackendPostsController extends Controller
         $S_text = $request->S_text;
         $text = $request->text;
         $id = $request->id;
+        $slug = Str::slug($title);
 
-        PostsModel::where('id', $id)->update([
+        Posts::where('id', $id)->update([
             'title' => $title,
             'text' => $text,
-            'S_text' => $S_text
+            'S_text' => $S_text,
+            'slug' => $slug
         ]);
+
+        if ($request->has('img') && $request->file('img') != null) {
+            $img = $request->file('img');
+
+            $Folder = 'public/images/';
+
+            $imgName = str_replace('' , '_' , $title) . '_' . time() . '.' . $img->getClientOriginalExtension();
+
+            $img->storeAs($Folder, $imgName);
+
+            Posts::where('id', $id)->update([
+                'img' => $imgName,
+            ]);
+        }
 
         return redirect(route('Backend.posts'));
     }
@@ -117,7 +151,7 @@ class BackendPostsController extends Controller
      */
     public function destroy($id)
     {
-        PostsModel::destroy($id);
+        Posts::destroy($id);
         return redirect(route('Backend.posts'));
     }
 }

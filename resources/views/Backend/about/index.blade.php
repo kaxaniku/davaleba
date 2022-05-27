@@ -22,8 +22,8 @@
                             </div>
                             <div class="mb-3">
                                 <label for="short_text" class="form-label">Short Text</label>
-                                <textarea class="form-control" id="short_text" rows="6" name="S_text">{{ $data['AboutData']->S_text }}</textarea>
-                            @error('S_text')
+                                <textarea class="form-control" id="short_text" rows="6" name="short_text">{{ $data['AboutData']->short_text }}</textarea>
+                            @error('short_text')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror 
                             </div>

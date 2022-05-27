@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\AboutPage;
-use App\Http\Requests\BackendAboutRequest;
+use App\Models\ContactPage;
 
-class BackendAboutController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +14,12 @@ class BackendAboutController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    
+
     public function index()
     {
-        $AboutData = AboutPage::first();
+        $ContactData = ContactPage::first();
 
-        return view('Backend.about.index')->with('data', ['AboutData' => $AboutData]);
+        return view('Backend.contact.index')->with('data', ['ContactData' => $ContactData]);
     }
 
     /**
@@ -73,20 +72,24 @@ class BackendAboutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(BackendAboutRequest $request)
-    {      
+    public function update(Request $request)
+    {
         $title = $request->title;
         $S_text = $request->S_text;
         $text = $request->text;
+        $C_address = $request->C_address;
+        $C_info = $request->C_info;
 
-        AboutPage::first()->update([
+        ContactPage::first()->update([
             'title' => $title,
             'S_text' => $S_text,
-            'text' => $text
+            'text' => $text,
+            'C_address' => $C_address,
+            'C_info' => $C_info
+
         ]);
 
-        return redirect()->route('Backend.about');
-    
+        return redirect()->route('Backend.contact');
     }
 
     /**
