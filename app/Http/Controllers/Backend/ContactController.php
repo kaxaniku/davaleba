@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ContactPage;
+use App\Models\Contact;
 
 class ContactController extends Controller
 {
@@ -17,9 +18,14 @@ class ContactController extends Controller
 
     public function index()
     {
-        $ContactData = ContactPage::first();
 
-        return view('Backend.contact.index')->with('data', ['ContactData' => $ContactData]);
+        $data = [
+            'contact' => Contact::orderBy('id', 'desc')->paginate(5),
+            'ContactData' => ContactPage::first()
+
+        ];
+
+        return view('Backend.contact.index')->with('data', $data);
     }
 
     /**

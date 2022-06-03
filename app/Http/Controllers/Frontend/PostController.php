@@ -9,6 +9,14 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
+    public function index()
+    {
+        $data = [
+            'posts' => Posts::orderBy('id', 'desc')->paginate(18)
+        ];
+
+        return view('Frontend.posts.index')->with('data', $data);
+    }
     public function view($slug, $id){
         $post = Posts::where('id', $id)->first();
         $data = [

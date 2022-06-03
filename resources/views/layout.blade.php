@@ -74,8 +74,7 @@
                                 <li><a href="category.html">Photography</a></li>
                             </ul>
                         </li>
-                        <li class="has-children">
-                            <a href="#0" title="" class="">Blog</a>
+                        <li class='{{ Route::getCurrentRoute()->getName() == 'post.index' ? 'current-menu-item' : ''  }}'><a href="/posts" title="">Blog</a>
                             <ul class="sub-menu">
                                 <li><a href="single-standard.html">Standard Post</a></li>
                                 <li><a href="single-video.html">Video Post</a></li>

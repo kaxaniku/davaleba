@@ -35,7 +35,12 @@ Route::get('/about', [AboutPageController::class, 'index'])->name('about');
 
 Route::get('/post/{slug}/{id}', [PostController::class, 'view'])->name('post.view');
 
+Route::get('/posts', [PostController::class, 'index'])->name('post.index');
+
 Route::get('/contact', [ContactPageController::class, 'index'])->name('contact');
+
+Route::post('/contact/send', [ContactPageController::class, 'send'])->name('mail.send');
+
 Auth::routes();
 
 Route::get('/Backend', [HomeController::class, 'index'])->name('Backend.home')->middleware('auth');

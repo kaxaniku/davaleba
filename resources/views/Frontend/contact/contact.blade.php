@@ -1,10 +1,8 @@
 @extends ('layout')
 
 @section ('content')
-
 <main>
     <body id="top">
-    
     
            <!-- # site-content
         ================================================== -->
@@ -61,30 +59,29 @@
                                 </div>
 
                                 <h4>Feel Free to Say Hi.</h4>
-
-                                <form name="cForm" id="cForm" class="entry__form" method="post" action="" autocomplete="off">
+                                @if (isset($data['Success']) && $data['Success'] == 1)
+                                    <h4>message was delivered successfully</h4>
+                                @endif
+                                <form action="{{ route('mail.send') }}" class="entry__form" method="post" >
+                                    @csrf
                                     <fieldset class="row">
-
+        
                                         <div class="column lg-6 tab-12 form-field">
-                                            <input name="cName" id="cName" class="u-fullwidth" placeholder="Your Name" value="" type="text">
+                                            <input name="username" class="u-fullwidth" placeholder="Your Name" type="text" required>
                                         </div>
-
+        
                                         <div class="column lg-6 tab-12 form-field">
-                                            <input name="cEmail" id="cEmail" class="u-fullwidth" placeholder="Your Email" value="" type="text">
+                                            <input name="email" class="u-fullwidth" placeholder="Your Email" type="email" required>
                                         </div>
-
-                                        <div class="column lg-12 form-field">
-                                            <input name="cWebsite" id="cWebsite" class="u-fullwidth" placeholder="Website" value="" type="text">
-                                        </div>
-
+        
                                         <div class="column lg-12 message form-field">
-                                            <textarea name="cMessage" id="cMessage" class="u-fullwidth" placeholder="Your Message"></textarea>
+                                            <textarea name="message" class="u-fullwidth" placeholder="Your Message" required></textarea>
                                         </div>
-
+        
                                         <div class="column lg-12">
                                             <input name="submit" id="submit" class="btn btn--primary btn-wide btn--large u-fullwidth" value="Add Comment" type="submit">
                                         </div>
-
+        
                                     </fieldset>
                                 </form> <!-- end form -->
 
