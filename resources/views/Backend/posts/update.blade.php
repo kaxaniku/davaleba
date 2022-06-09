@@ -36,6 +36,28 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <select class="form-control" name="category_id">
+                                @foreach ($data['categories'] as $item)
+                                    <option value="{{ $item->id}}">{{$item->name}}</option>
+                                @endforeach
+                                </select>  
+                            </div>
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Tags</label>
+                                <br>
+                                @php
+                                    $tagsId = $data['post']->tags()->allRelatedIds()->toArray();
+                                @endphp
+                                @foreach ($data['tags'] as $item)
+                                    <div>
+                                        <input 
+                                            type="checkbox" id="tag_id" name="tag_id[]" 
+                                            @if(in_array($item->id, $tagsId)) checked @endif value="{{ $item->id }}"> {{ $item->name }}
+                                    </div>
+                                @endforeach
+                            </div>
+                            <div class="mb-3">
                                 <label for="text" class="form-label">Image</label>
                                 <input type="file" class="form-control" name="img"> 
                             </div>

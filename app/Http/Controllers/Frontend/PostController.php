@@ -18,10 +18,25 @@ class PostController extends Controller
         return view('Frontend.posts.index')->with('data', $data);
     }
     public function view($slug, $id){
-        $post = Posts::where('id', $id)->first();
+        $post = Posts::where('id', $id)->withCount('comments')->first();
         $data = [
             'post' => $post
         ];
         return view('Frontend.posts.view')->with('data', $data);
+    }
+    public function comment(Request $request)
+    {
+    $name = $request->name;
+    $email = $request->email;
+    $message = $request->message;
+    $post_id = $request->post_id;
+
+    Comment::create([
+        'name' => $name,
+        'email' => $email,
+        'message' => $message,
+        'post_id' => $post_id
+    ]);
+    return redirect()->back();
     }
 }

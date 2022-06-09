@@ -167,6 +167,20 @@
               </a>
             </li>
 
+            <li class="menu-item {{ Route::getCurrentRoute()->getName() == 'Backend.categories' ? 'active' : ''  }}">
+              <a href="{{ route('Backend.categories') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-crown"></i>
+                <div data-i18n="Contact">Categories</div>
+              </a>
+            </li>
+
+            <li class="menu-item {{ Route::getCurrentRoute()->getName() == 'Backend.tags' ? 'active' : ''  }}">
+              <a href="{{ route('Backend.tags') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-crown"></i>
+                <div data-i18n="Contact">Tags</div>
+              </a>
+            </li>
+
             <li class="menu-item disabled">
               <a href="" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-crown"></i>
